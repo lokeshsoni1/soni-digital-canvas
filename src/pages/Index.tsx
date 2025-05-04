@@ -12,7 +12,6 @@ import Testimonials from '../components/Testimonials';
 import Resume from '../components/Resume';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import PortfolioLink from '../components/PortfolioLink';
 
 const Index = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -42,7 +41,6 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <PortfolioLink to="/bindra" text="View Bindra's Portfolio" />
       
       <main className="flex-grow">
         <Hero />
