@@ -1,3 +1,4 @@
+# Trigger rebuild
 # Welcome to your Lovable project
 
 ## Project info
