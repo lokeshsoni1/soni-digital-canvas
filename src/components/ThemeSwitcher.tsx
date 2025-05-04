@@ -50,36 +50,44 @@ export function ThemeSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+        <Button variant="ghost" size="icon" className="relative hover:bg-primary/10 transition-all">
           <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => changeTheme("dark")} className="flex items-center gap-2">
-          <Moon size={16} /> Dark
+      <DropdownMenuContent align="end" className="animate-scale-in">
+        <DropdownMenuItem onClick={() => changeTheme("dark")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-[#1A1F2C] border border-white/20"></div> 
+          <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("light")} className="flex items-center gap-2">
-          <Sun size={16} /> Light
+        <DropdownMenuItem onClick={() => changeTheme("light")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-[#F1F0FB] border border-black/20"></div>
+          <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("high-contrast")} className="flex items-center gap-2">
-          <Palette size={16} /> High Contrast
+        <DropdownMenuItem onClick={() => changeTheme("high-contrast")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-black border border-yellow-400"></div>
+          <span>High Contrast</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("solarized")} className="flex items-center gap-2">
-          <Palette size={16} /> Solarized
+        <DropdownMenuItem onClick={() => changeTheme("solarized")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-[#FDF6E3] border border-[#2AA198]"></div>
+          <span>Solarized</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("cyberpunk")} className="flex items-center gap-2">
-          <Palette size={16} /> Cyberpunk
+        <DropdownMenuItem onClick={() => changeTheme("cyberpunk")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-[#120458] border border-[#FE53BB]"></div>
+          <span>Cyberpunk</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("minimal")} className="flex items-center gap-2">
-          <Palette size={16} /> Minimal
+        <DropdownMenuItem onClick={() => changeTheme("minimal")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-white border border-black"></div>
+          <span>Minimal</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("sepia")} className="flex items-center gap-2">
-          <Palette size={16} /> Sepia
+        <DropdownMenuItem onClick={() => changeTheme("sepia")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <div className="w-5 h-5 rounded-full bg-[#FFF1E0] border border-[#704214]"></div>
+          <span>Sepia</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeTheme("system")} className="flex items-center gap-2">
-          <Laptop size={16} /> System
+        <DropdownMenuItem onClick={() => changeTheme("system")} className="flex items-center gap-2 cursor-pointer hover:bg-primary/10">
+          <Laptop size={16} />
+          <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

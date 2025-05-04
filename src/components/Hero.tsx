@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   const roles = ["Web Developer", "UI/UX Designer", "Video Editor", "CS Student"];
@@ -55,10 +55,19 @@ export default function Hero() {
   
   return (
     <section id="home" className="min-h-screen flex items-center pt-16 relative bg-animate bg-gradient-to-br from-background via-background to-secondary/5">
-      {/* Decorative elements */}
+      {/* Animated background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-accent/5 blur-3xl"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-float"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-accent/5 blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-primary/10 blur-xl animate-float-delay"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-56 h-56 rounded-full bg-secondary/10 blur-2xl animate-pulse-slow-delay"></div>
+        
+        {/* Moving particles */}
+        <div className="particle particle-1"></div>
+        <div className="particle particle-2"></div>
+        <div className="particle particle-3"></div>
+        <div className="particle particle-4"></div>
+        <div className="particle particle-5"></div>
       </div>
       
       <div className="container-custom grid md:grid-cols-2 gap-8 items-center relative z-10">
@@ -84,10 +93,6 @@ export default function Hero() {
             <Button size="lg" className="group" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
               Contact Me
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button size="lg" variant="outline" className="group">
-              Download Resume
-              <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </Button>
           </div>
         </div>

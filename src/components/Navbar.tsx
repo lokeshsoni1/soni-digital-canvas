@@ -72,7 +72,7 @@ export default function Navbar() {
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="text-xl font-bold font-poppins relative z-10">
-          <span className="text-gradient">Lokesh.dev</span>
+          <span className="text-gradient">Lokesh's Portfolio</span>
         </a>
         
         {/* Desktop Navigation */}

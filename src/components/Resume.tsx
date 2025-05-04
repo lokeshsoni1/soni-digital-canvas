@@ -1,13 +1,12 @@
 
-import { Button } from "@/components/ui/button";
-import { Download, Calendar, School, Briefcase } from "lucide-react";
+import { Calendar, School, Briefcase } from "lucide-react";
 
 export default function Resume() {
   const education = [
     {
       degree: "Bachelor of Technology in Computer Science and Engineering",
       institution: "Dronacharya College of Engineering",
-      duration: "2023 - Present",
+      duration: "2024 - Present",
       description: "First-year student focusing on core CS concepts and web development technologies."
     }
   ];
@@ -41,15 +40,15 @@ export default function Resume() {
   ];
 
   return (
-    <section id="resume" className="py-20 bg-secondary/20">
-      <div className="container-custom">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="section-title mb-0">Resume</h2>
-          <Button className="gap-2">
-            <Download className="h-4 w-4" />
-            Download CV
-          </Button>
-        </div>
+    <section id="resume" className="py-20 bg-secondary/20 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-20 right-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/5 rounded-full blur-2xl animate-pulse-slow"></div>
+      </div>
+      
+      <div className="container-custom relative z-10">
+        <h2 className="section-title mb-8">Resume</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Education Section */}
@@ -63,7 +62,7 @@ export default function Resume() {
 
             <div className="space-y-6">
               {education.map((item, index) => (
-                <div key={index} className="card-base hover:shadow-md">
+                <div key={index} className="card-base hover:shadow-md transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div className="bg-primary text-primary-foreground h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <Calendar className="h-5 w-5" />
@@ -95,7 +94,7 @@ export default function Resume() {
 
             <div className="space-y-6">
               {experience.map((item, index) => (
-                <div key={index} className="card-base hover:shadow-md">
+                <div key={index} className="card-base hover:shadow-md transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div className="bg-primary text-primary-foreground h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <Calendar className="h-5 w-5" />
@@ -144,7 +143,10 @@ export default function Resume() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certificates.map((cert, index) => (
-              <div key={index} className="card-base hover:shadow-md flex flex-col">
+              <div 
+                key={index} 
+                className="card-base hover:shadow-md flex flex-col transform hover:-translate-y-1 transition-all duration-300"
+              >
                 <h4 className="text-lg font-bold">{cert.title}</h4>
                 <div className="flex items-center gap-2 mt-2">
                   <span className="text-primary font-medium">{cert.issuer}</span>
