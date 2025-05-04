@@ -1,0 +1,181 @@
+
+/* Bindra portfolio custom animations and styles */
+
+/* Animated particles */
+.bindra-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.bindra-particle:nth-child(1) {
+  width: 5px;
+  height: 5px;
+  top: 20%;
+  left: 20%;
+  animation: bindra-float 10s infinite alternate;
+}
+
+.bindra-particle:nth-child(2) {
+  width: 8px;
+  height: 8px;
+  top: 60%;
+  left: 10%;
+  animation: bindra-float 7s infinite alternate-reverse;
+}
+
+.bindra-particle:nth-child(3) {
+  width: 12px;
+  height: 12px;
+  top: 40%;
+  left: 70%;
+  animation: bindra-float 15s infinite alternate;
+}
+
+.bindra-particle:nth-child(4) {
+  width: 6px;
+  height: 6px;
+  top: 75%;
+  left: 80%;
+  animation: bindra-float 12s infinite alternate-reverse;
+}
+
+.bindra-particle:nth-child(5) {
+  width: 4px;
+  height: 4px;
+  top: 10%;
+  left: 80%;
+  animation: bindra-float 8s infinite alternate;
+}
+
+.bindra-particle:nth-child(6) {
+  width: 10px;
+  height: 10px;
+  top: 80%;
+  left: 40%;
+  animation: bindra-float 9s infinite alternate-reverse;
+}
+
+.bindra-particle:nth-child(7) {
+  width: 7px;
+  height: 7px;
+  top: 30%;
+  left: 50%;
+  animation: bindra-float 11s infinite alternate;
+}
+
+.bindra-particle:nth-child(8) {
+  width: 9px;
+  height: 9px;
+  top: 15%;
+  left: 85%;
+  animation: bindra-float 14s infinite alternate-reverse;
+}
+
+.bindra-particle:nth-child(9) {
+  width: 5px;
+  height: 5px;
+  top: 45%;
+  left: 15%;
+  animation: bindra-float 9s infinite alternate;
+}
+
+.bindra-particle:nth-child(10) {
+  width: 8px;
+  height: 8px;
+  top: 90%;
+  left: 90%;
+  animation: bindra-float 13s infinite alternate-reverse;
+}
+
+@keyframes bindra-float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-50px) translateX(30px);
+    opacity: 0.3;
+  }
+}
+
+/* Grid background pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(var(--primary), 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(var(--primary), 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Animation for floating elements */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-reverse {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Add styles for the skills section */
+.skill-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.skill-card {
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Import the styles in the main index.css */

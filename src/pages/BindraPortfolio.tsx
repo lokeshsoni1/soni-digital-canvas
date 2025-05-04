@@ -2,19 +2,18 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Skills from '../components/Skills';
-import Projects from '../components/Projects';
-import Freelance from '../components/Freelance';
-import Testimonials from '../components/Testimonials';
-import Resume from '../components/Resume';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
-import PortfolioLink from '../components/PortfolioLink';
+import BindraNavbar from '../components/bindra/BindraNavbar';
+import BindraHero from '../components/bindra/BindraHero';
+import BindraAbout from '../components/bindra/BindraAbout';
+import BindraSkills from '../components/bindra/BindraSkills';
+import BindraProjects from '../components/bindra/BindraProjects';
+import BindraFreelance from '../components/bindra/BindraFreelance';
+import BindraTestimonials from '../components/bindra/BindraTestimonials';
+import BindraResume from '../components/bindra/BindraResume';
+import BindraContact from '../components/bindra/BindraContact';
+import BindraFooter from '../components/bindra/BindraFooter';
 
-const Index = () => {
+const BindraPortfolio = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
   
   // Show scroll button when user scrolls down
@@ -40,22 +39,21 @@ const Index = () => {
   };
   
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <PortfolioLink to="/bindra" text="View Bindra's Portfolio" />
+    <div className="flex flex-col min-h-screen bg-gradient-radial from-background via-background to-background/90">
+      <BindraNavbar />
       
       <main className="flex-grow">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Freelance />
-        <Testimonials />
-        <Resume />
-        <Contact />
+        <BindraHero />
+        <BindraAbout />
+        <BindraSkills />
+        <BindraProjects />
+        <BindraFreelance />
+        <BindraTestimonials />
+        <BindraResume />
+        <BindraContact />
       </main>
       
-      <Footer />
+      <BindraFooter />
       
       {/* Scroll to top button */}
       <Button
@@ -72,4 +70,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default BindraPortfolio;
