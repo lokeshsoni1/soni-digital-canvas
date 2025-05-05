@@ -69,60 +69,69 @@ export default function Navbar() {
 
   return (
     <header className={`fixed w-full top-0 z-40 transition-all duration-300 ${
-      scrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-md" : "py-5 bg-transparent"
+      scrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-md" : "py-5 bg-background/20 backdrop-blur-sm"
     }`}>
-      <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between">
+      <div className="absolute inset-0 z-0" style={{ backgroundImage: 'var(--background-pattern)', backgroundSize: 'var(--pattern-size)' }}></div>
+      <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between relative z-10">
         {/* Logo/Brand */}
-        <a href="#home" className="text-xl font-bold font-poppins relative z-10">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Lokesh's Portfolio
-          </span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-6 items-center">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className={`relative px-2 py-1 transition-all duration-200 hover:text-primary ${
-                    activeSection === link.href.substring(1) 
-                      ? "text-primary font-medium after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary" 
-                      : "text-foreground/80"
-                  }`}
-                  onClick={(e) => handleNavLinkClick(e, link.href)}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center gap-8">
+          <a href="#home" className="text-xl font-bold relative z-10 group transition-all">
+            <span className="theme-gradient-text text-xl md:text-2xl font-extrabold tracking-tight">
+              Lokesh's Portfolio
+            </span>
+            <span className="block h-0.5 w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r" style={{ backgroundImage: 'var(--gradient)' }}></span>
+          </a>
           
-          <ThemeSwitcher />
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center">
+            <ul className="flex space-x-6 items-center">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className={`relative px-2 py-1 transition-all duration-200 hover:text-primary ${
+                      activeSection === link.href.substring(1) 
+                        ? "text-primary font-medium after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary" 
+                        : "text-foreground/80"
+                    }`}
+                    onClick={(e) => handleNavLinkClick(e, link.href)}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
         
-        {/* Mobile Navigation Toggle */}
-        <div className="flex items-center md:hidden gap-2">
+        <div className="flex items-center gap-4">
           <ThemeSwitcher />
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          
+          {/* Mobile Navigation Toggle */}
+          <div className="md:hidden">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
       </div>
       
       {/* Mobile Navigation Menu */}
       <div 
-        className={`md:hidden fixed inset-0 z-30 bg-background/95 backdrop-blur-lg transform transition-transform duration-300 ${
+        className={`md:hidden fixed inset-0 z-30 transition-transform duration-300 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full justify-center items-center pt-16">
+        <div className="absolute inset-0 bg-background/95 backdrop-blur-lg"></div>
+        <div className="flex flex-col h-full justify-center items-center pt-16 relative z-10">
+          <span className="theme-gradient-text text-2xl font-extrabold tracking-tight mb-8">
+            Lokesh's Portfolio
+          </span>
           <ul className="flex flex-col space-y-6 items-center">
             {navLinks.map((link) => (
               <li key={link.name}>
