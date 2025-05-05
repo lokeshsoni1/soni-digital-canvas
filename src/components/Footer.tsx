@@ -30,7 +30,7 @@ export default function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a 
-                href="https://www.linkedin.com/in/lokesh-soni-095856291" 
+                href="https://www.linkedin.com/in/lokesh-soni-2b3b7034a/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -39,7 +39,7 @@ export default function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a 
-                href="https://instagram.com/lokeshsoni667?utm_source=qr&igshid=MzNINGNkZWQ4Mg%3D%3D" 
+                href="https://instagram.com/lokesh.soni194" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -79,19 +79,19 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-primary" />
-                <a href="mailto:lokeshsoni143445@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  lokeshsoni143445@gmail.com
+                <a href="mailto:lokeshsoniroyal1@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  lokeshsoniroyal1@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-primary" />
-                <a href="tel:+918708435001" className="text-muted-foreground hover:text-primary transition-colors">
-                  +91 8708435001
+                <a href="tel:+918595598458" className="text-muted-foreground hover:text-primary transition-colors">
+                  +91 8595598458
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">Jhajjar, Haryana, India</span>
+                <span className="text-muted-foreground">Gurugram, Haryana, India</span>
               </li>
             </ul>
           </div>

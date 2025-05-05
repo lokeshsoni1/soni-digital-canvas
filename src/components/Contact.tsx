@@ -108,10 +108,10 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold">Email</h4>
                     <a 
-                      href="mailto:lokeshsoni143445@gmail.com" 
+                      href="mailto:lokeshsoniroyal1@gmail.com" 
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      lokeshsoni143445@gmail.com
+                      lokeshsoniroyal1@gmail.com
                     </a>
                   </div>
                 </div>
@@ -123,10 +123,10 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold">Phone</h4>
                     <a 
-                      href="tel:+918708435001" 
+                      href="tel:+918595598458" 
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +91 8708435001
+                      +91 8595598458
                     </a>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold">Location</h4>
                     <p className="text-muted-foreground">
-                      Jhajjar, Haryana, India
+                      Gurugram, Haryana, India
                     </p>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function Contact() {
                 </a>
                 
                 <a 
-                  href="https://www.linkedin.com/in/lokesh-soni-095856291" 
+                  href="https://www.linkedin.com/in/lokesh-soni-2b3b7034a/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary/10 p-3 rounded-full text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -169,7 +169,7 @@ export default function Contact() {
                 </a>
                 
                 <a 
-                  href="https://instagram.com/lokeshsoni667?utm_source=qr&igshid=MzNINGNkZWQ4Mg%3D%3D" 
+                  href="https://instagram.com/lokesh.soni194" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary/10 p-3 rounded-full text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
