@@ -13,6 +13,7 @@ interface Testimonial {
 
 export default function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const testimonialsRef = useRef<HTMLDivElement>(null);
   
   const testimonials: Testimonial[] = [
@@ -42,91 +43,130 @@ export default function Testimonials() {
   // Auto slide testimonials
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      if (!isAnimating) {
+        changeTestimonial((currentTestimonial + 1) % testimonials.length);
+      }
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [currentTestimonial, testimonials.length, isAnimating]);
+  
+  const changeTestimonial = (index: number) => {
+    if (isAnimating || index === currentTestimonial) return;
+    
+    setIsAnimating(true);
+    setCurrentTestimonial(index);
+    
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 500); // Match this with your transition duration
+  };
   
   const handlePrev = () => {
-    setCurrentTestimonial((prev) => 
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
+    const newIndex = currentTestimonial === 0 ? testimonials.length - 1 : currentTestimonial - 1;
+    changeTestimonial(newIndex);
   };
   
   const handleNext = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    const newIndex = (currentTestimonial + 1) % testimonials.length;
+    changeTestimonial(newIndex);
   };
   
   return (
-    <section id="testimonials" className="py-20 relative">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10"></div>
-      <div className="container-custom">
+    <section id="testimonials" className="py-20 relative overflow-hidden">
+      {/* Background animations */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-10 left-10 w-60 h-60 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      </div>
+      
+      <div className="container-custom relative z-10">
         <h2 className="section-title">Client Testimonials</h2>
         
-        <div ref={testimonialsRef} className="relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-            >
-              {testimonials.map((testimonial) => (
-                <div 
-                  key={testimonial.id}
-                  className="w-full flex-shrink-0 px-4"
-                >
-                  <div className="card-base flex flex-col items-center text-center p-8 max-w-3xl mx-auto">
-                    <Quote className="h-12 w-12 text-primary/20 mb-6" />
+        <div ref={testimonialsRef} className="relative max-w-4xl mx-auto">
+          {/* Testimonial cards */}
+          <div className="relative h-[350px] md:h-[250px]">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={testimonial.id}
+                className={`absolute inset-0 transition-all duration-500 ease-in-out ${
+                  index === currentTestimonial 
+                    ? 'opacity-100 translate-x-0 scale-100 z-10' 
+                    : index < currentTestimonial || (currentTestimonial === 0 && index === testimonials.length - 1)
+                      ? 'opacity-0 -translate-x-full scale-95 z-0' 
+                      : 'opacity-0 translate-x-full scale-95 z-0'
+                }`}
+              >
+                <div className="bg-card h-full border border-border rounded-xl p-6 md:p-8 shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
+                  {/* Quote icon background */}
+                  <Quote className="absolute top-6 right-6 h-32 w-32 text-primary/5 transform rotate-180" />
+                  
+                  {/* Avatar */}
+                  <div className="relative shrink-0">
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-primary/20">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground rounded-full p-1 shadow">
+                      <Quote className="h-4 w-4" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 text-center md:text-left">
+                    <p className="text-lg md:text-xl font-medium mb-4 italic relative">
+                      "{testimonial.content}"
+                    </p>
                     
-                    <p className="text-xl mb-8 font-medium">"{testimonial.content}"</p>
-                    
-                    <div className="flex items-center gap-4">
-                      <div className="h-16 w-16 rounded-full overflow-hidden">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div className="text-left">
-                        <h4 className="font-bold">{testimonial.name}</h4>
-                        <p className="text-muted-foreground">{testimonial.role}</p>
-                      </div>
+                    <div>
+                      <h4 className="font-bold text-lg">{testimonial.name}</h4>
+                      <p className="text-primary">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
           
-          <div className="flex justify-center mt-10 gap-4">
+          {/* Navigation controls */}
+          <div className="mt-8 flex items-center justify-center gap-4">
             <Button 
               variant="outline" 
               size="icon" 
               onClick={handlePrev}
+              disabled={isAnimating}
+              className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
             
-            {testimonials.map((_, index) => (
-              <Button 
-                key={index}
-                variant={index === currentTestimonial ? "default" : "outline"}
-                size="icon"
-                className={`rounded-full w-3 h-3 p-0 ${index === currentTestimonial ? "" : "opacity-50"}`}
-                onClick={() => setCurrentTestimonial(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
-              >
-                <span className="sr-only">Testimonial {index + 1}</span>
-              </Button>
-            ))}
+            <div className="flex gap-2">
+              {testimonials.map((_, index) => (
+                <Button 
+                  key={index}
+                  variant="ghost"
+                  size="icon"
+                  className={`w-3 h-3 p-1 rounded-full ${
+                    index === currentTestimonial 
+                      ? 'bg-primary' 
+                      : 'bg-primary/20 hover:bg-primary/40'
+                  }`}
+                  onClick={() => changeTestimonial(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
             
             <Button 
               variant="outline" 
               size="icon" 
               onClick={handleNext}
+              disabled={isAnimating}
+              className="rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
               aria-label="Next testimonial"
             >
               <ChevronRight className="h-5 w-5" />

@@ -52,6 +52,62 @@ export default function Hero() {
     const timeout = setTimeout(typeEffect, 1000);
     return () => clearTimeout(timeout);
   }, []);
+
+  // Add moving shapes animation
+  useEffect(() => {
+    const createMovingShapes = () => {
+      const heroSection = document.getElementById('home');
+      if (!heroSection) return;
+
+      // Create floating elements
+      const count = 8;
+      const shapes = ['circle', 'square', 'triangle', 'dot'];
+      const container = document.createElement('div');
+      container.className = 'absolute inset-0 overflow-hidden pointer-events-none z-0';
+      
+      for (let i = 0; i < count; i++) {
+        const shape = document.createElement('div');
+        const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+        const size = Math.random() * 60 + 20; // 20-80px
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const duration = Math.random() * 15 + 10; // 10-25s
+        const delay = Math.random() * 5;
+        
+        shape.className = `absolute opacity-[0.03] z-0 ${
+          shapeType === 'circle' ? 'rounded-full' : 
+          shapeType === 'square' ? 'rounded-md' : 
+          shapeType === 'triangle' ? 'triangle' : 'rounded-full scale-50'
+        }`;
+        
+        if (shapeType === 'triangle') {
+          shape.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+        }
+        
+        shape.style.width = `${size}px`;
+        shape.style.height = `${size}px`;
+        shape.style.left = `${posX}%`;
+        shape.style.top = `${posY}%`;
+        shape.style.background = `rgba(var(--primary-rgb), 0.15)`;
+        shape.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite alternate`;
+        
+        container.appendChild(shape);
+      }
+      
+      heroSection.appendChild(container);
+    };
+    
+    createMovingShapes();
+    
+    // Clean up
+    return () => {
+      const heroSection = document.getElementById('home');
+      const shapeContainer = heroSection?.querySelector('.absolute.inset-0.overflow-hidden');
+      if (shapeContainer) {
+        shapeContainer.remove();
+      }
+    };
+  }, []);
   
   return (
     <section id="home" className="min-h-screen flex items-center pt-16 relative bg-animate bg-gradient-to-br from-background via-background to-secondary/5">
@@ -90,7 +146,7 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="group" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+            <Button size="lg" className="group animate-bounce-slow" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
               Contact Me
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
@@ -100,13 +156,16 @@ export default function Hero() {
         {/* Profile Image */}
         <div className="order-1 md:order-2 flex justify-center items-center animate-float">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-full blur-2xl opacity-30"></div>
-            <img 
-              src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png" 
-              alt="Lokesh Soni" 
-              className="w-64 h-64 object-cover rounded-full border-4 border-primary/20 shadow-xl relative z-10"
-            />
-            <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-full blur-2xl opacity-30 animate-pulse-slow"></div>
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-full blur-xl opacity-20 animate-spin-slow"></div>
+              <img 
+                src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png" 
+                alt="Lokesh Soni" 
+                className="w-64 h-64 object-cover rounded-full border-4 border-primary/20 shadow-xl relative z-10"
+              />
+            </div>
+            <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl animate-bounce-slow">
               <span>1+</span>
             </div>
           </div>

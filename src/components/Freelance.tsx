@@ -1,76 +1,120 @@
 
-import { Code, FileInput } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, BriefcaseIcon, Monitor, Code, Palette } from "lucide-react";
+
+interface Service {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
+}
 
 export default function Freelance() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const elementsRef = useRef<Array<HTMLElement | null>>([]);
+
+  const services: Service[] = [
+    {
+      icon: <BriefcaseIcon className="h-6 w-6" />,
+      title: "Data Entry",
+      description: "Providing efficient and accurate manual and automated data entry services for businesses and individuals.",
+      color: "from-blue-500 to-cyan-400"
+    },
+    {
+      icon: <Monitor className="h-6 w-6" />,
+      title: "Online UI Editing",
+      description: "Optimizing web interfaces using modern design tools and CSS frameworks for better user experience.",
+      color: "from-purple-500 to-pink-400"
+    },
+    {
+      icon: <Code className="h-6 w-6" />,
+      title: "Web Development",
+      description: "Creating responsive and user-friendly websites with modern technologies and best practices.",
+      color: "from-amber-500 to-orange-400"
+    },
+    {
+      icon: <Palette className="h-6 w-6" />,
+      title: "UI/UX Design",
+      description: "Crafting visually appealing interfaces with focus on usability and user experience.",
+      color: "from-emerald-500 to-green-400"
+    }
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    // Observe all elements that should animate on scroll
+    elementsRef.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      elementsRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
   return (
-    <section id="freelance" className="py-20 bg-secondary/20">
-      <div className="container-custom">
-        <h2 className="section-title">Freelance Services</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="card-base hover:shadow-lg transition-shadow">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="bg-primary/10 p-4 rounded-full text-primary mb-6">
-                <FileInput className="h-10 w-10" />
+    <section ref={sectionRef} id="freelance" className="py-20 bg-secondary/5 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <h2 
+          ref={el => elementsRef.current[0] = el}
+          className="text-3xl font-bold mb-10 text-center reveal"
+        >
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Freelance Services
+          </span>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              ref={el => elementsRef.current[index + 1] = el}
+              className="bg-background/50 backdrop-blur-sm border border-secondary/20 rounded-xl p-6 hover:shadow-lg transition-all duration-500 group hover:border-primary/30 reveal"
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-lg bg-gradient-to-r ${service.color} text-white transform transition-transform duration-300 group-hover:scale-110`}>
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                  <p className="text-muted-foreground">
+                    {service.description}
+                  </p>
+                </div>
               </div>
               
-              <h3 className="text-2xl font-bold mb-4">Data Entry</h3>
-              <p className="text-muted-foreground mb-6">
-                I provide both manual and automated data entry services customized to the unique needs of each client. With attention to detail and quick turnaround times, I ensure accurate and efficient data organization.
-              </p>
-              
-              <ul className="space-y-2 text-left">
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Manual data input and formatting</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Document digitization</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Data cleaning and organization</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Spreadsheet management</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="card-base hover:shadow-lg transition-shadow">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="bg-primary/10 p-4 rounded-full text-primary mb-6">
-                <Code className="h-10 w-10" />
+              <div className="mt-6 pt-4 border-t border-secondary/20 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                <Button variant="ghost" size="sm" className="group">
+                  Learn More
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
               </div>
-              
-              <h3 className="text-2xl font-bold mb-4">Online UI Editing</h3>
-              <p className="text-muted-foreground mb-6">
-                I specialize in editing and optimizing web interfaces using modern design tools like Figma, Canva, and CSS frameworks. Creating clean, intuitive, and responsive user experiences is my passion.
-              </p>
-              
-              <ul className="space-y-2 text-left">
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>UI component design and optimization</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Responsive layout refinement</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Design system implementation</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Prototyping and interaction design</span>
-                </li>
-              </ul>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

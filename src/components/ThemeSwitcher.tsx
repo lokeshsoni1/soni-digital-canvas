@@ -20,9 +20,11 @@ export function ThemeSwitcher() {
     if (storedTheme) {
       setTheme(storedTheme);
       document.documentElement.classList.add(storedTheme);
+      applyThemeStyles(storedTheme);
     } else {
       setTheme("dark");
       document.documentElement.classList.add("dark");
+      applyThemeStyles("dark");
     }
   }, []);
   
@@ -38,12 +40,72 @@ export function ThemeSwitcher() {
       root.classList.add(newTheme);
       localStorage.setItem("theme", newTheme);
       setTheme(newTheme);
+      applyThemeStyles(newTheme);
     } else {
       // Handle system preference
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       root.classList.add(systemTheme);
       localStorage.removeItem("theme");
       setTheme(systemTheme);
+      applyThemeStyles(systemTheme);
+    }
+  };
+  
+  // Apply theme-specific CSS custom properties
+  const applyThemeStyles = (selectedTheme: Theme) => {
+    const root = document.documentElement;
+    
+    switch (selectedTheme) {
+      case "dark":
+        root.style.setProperty('--primary-hue', '240');
+        root.style.setProperty('--primary-saturation', '60%');
+        root.style.setProperty('--accent-hue', '260');
+        break;
+      case "light":
+        root.style.setProperty('--primary-hue', '220');
+        root.style.setProperty('--primary-saturation', '50%');
+        root.style.setProperty('--accent-hue', '280');
+        break;
+      case "high-contrast":
+        root.style.setProperty('--primary-hue', '60');
+        root.style.setProperty('--primary-saturation', '100%');
+        root.style.setProperty('--accent-hue', '60');
+        // Set high contrast specific variables
+        root.style.setProperty('--background', '0 0% 0%');
+        root.style.setProperty('--foreground', '60 100% 50%');
+        break;
+      case "solarized":
+        root.style.setProperty('--primary-hue', '180');
+        root.style.setProperty('--primary-saturation', '45%');
+        root.style.setProperty('--accent-hue', '45');
+        break;
+      case "cyberpunk":
+        root.style.setProperty('--primary-hue', '315');
+        root.style.setProperty('--primary-saturation', '100%');
+        root.style.setProperty('--accent-hue', '195');
+        // Set cyberpunk specific variables
+        root.style.setProperty('--background', '260 85% 12%');
+        root.style.setProperty('--foreground', '315 100% 90%');
+        break;
+      case "minimal":
+        root.style.setProperty('--primary-hue', '0');
+        root.style.setProperty('--primary-saturation', '0%');
+        root.style.setProperty('--accent-hue', '0');
+        break;
+      case "sepia":
+        root.style.setProperty('--primary-hue', '35');
+        root.style.setProperty('--primary-saturation', '40%');
+        root.style.setProperty('--accent-hue', '30');
+        // Set sepia specific variables
+        root.style.setProperty('--background', '35 35% 95%');
+        root.style.setProperty('--foreground', '35 35% 15%');
+        break;
+      case "system":
+        const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.style.setProperty('--primary-hue', isDark ? '240' : '220');
+        root.style.setProperty('--primary-saturation', isDark ? '60%' : '50%');
+        root.style.setProperty('--accent-hue', isDark ? '260' : '280');
+        break;
     }
   };
   

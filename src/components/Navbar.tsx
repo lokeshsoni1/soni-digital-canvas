@@ -68,11 +68,15 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`fixed w-full top-0 z-40 transition-all duration-300 ${scrolled ? "py-3 bg-background/90 backdrop-blur-md shadow-md" : "py-5 bg-transparent"}`}>
-      <div className="container-custom flex items-center justify-between">
-        {/* Logo */}
+    <header className={`fixed w-full top-0 z-40 transition-all duration-300 ${
+      scrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-md" : "py-5 bg-transparent"
+    }`}>
+      <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between">
+        {/* Logo/Brand */}
         <a href="#home" className="text-xl font-bold font-poppins relative z-10">
-          <span className="text-gradient">Lokesh's Portfolio</span>
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Lokesh's Portfolio
+          </span>
         </a>
         
         {/* Desktop Navigation */}
@@ -82,7 +86,11 @@ export default function Navbar() {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className={`nav-link ${activeSection === link.href.substring(1) ? "active" : ""}`}
+                  className={`relative px-2 py-1 transition-all duration-200 hover:text-primary ${
+                    activeSection === link.href.substring(1) 
+                      ? "text-primary font-medium after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary" 
+                      : "text-foreground/80"
+                  }`}
                   onClick={(e) => handleNavLinkClick(e, link.href)}
                 >
                   {link.name}
@@ -114,13 +122,13 @@ export default function Navbar() {
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full justify-center items-center">
+        <div className="flex flex-col h-full justify-center items-center pt-16">
           <ul className="flex flex-col space-y-6 items-center">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className={`nav-link text-xl ${activeSection === link.href.substring(1) ? "active" : ""}`}
+                  className={`text-xl ${activeSection === link.href.substring(1) ? "text-primary font-medium" : "text-foreground/80"}`}
                   onClick={(e) => handleNavLinkClick(e, link.href)}
                 >
                   {link.name}

@@ -1,7 +1,7 @@
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 
 interface Project {
   id: number;
@@ -14,6 +14,9 @@ interface Project {
 }
 
 export default function Projects() {
+  const [visibleProjects, setVisibleProjects] = useState(3);
+  const projectRefs = useRef<Array<HTMLDivElement | null>>([]);
+  
   const projects: Project[] = [
     {
       id: 1,
@@ -43,12 +46,39 @@ export default function Projects() {
       demo: "https://lokeshsoni1.github.io/milk_planner/"
     }
   ];
-  
-  const [visibleProjects, setVisibleProjects] = useState(3);
 
   const loadMore = useCallback(() => {
     setVisibleProjects((prev) => prev + 3);
   }, []);
+  
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-16');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe project cards
+    projectRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      projectRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [visibleProjects]);
   
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
@@ -65,62 +95,66 @@ export default function Projects() {
           {projects.slice(0, visibleProjects).map((project, index) => (
             <div 
               key={project.id} 
-              className="card-base group hover:shadow-lg hover:-translate-y-1 overflow-hidden project-card"
+              ref={(el) => (projectRefs.current[index] = el)}
+              className="group bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 opacity-0 translate-y-16"
               style={{
-                animationDelay: `${index * 0.15}s`
+                transitionDelay: `${index * 150}ms`
               }}
             >
-              <div className="h-48 overflow-hidden rounded-md relative mb-4">
+              <div className="h-48 overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10"></div>
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <div className="flex gap-2">
-                    {project.github && (
-                      <Button size="icon" variant="secondary" asChild className="hover:scale-110 transition-transform">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-5 w-5" />
-                        </a>
-                      </Button>
-                    )}
-                    {project.demo && (
-                      <Button size="icon" variant="default" asChild className="hover:scale-110 transition-transform">
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-5 w-5" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300 z-10"></div>
+                
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 translate-y-4 group-hover:translate-y-0">
+                  {project.github && (
+                    <Button size="icon" variant="secondary" asChild className="rounded-full shadow-lg hover:scale-110 transition-transform">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+                        <Github className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {project.demo && (
+                    <Button size="icon" variant="default" asChild className="rounded-full shadow-lg hover:scale-110 transition-transform">
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
               
-              <div>
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-secondary text-xs px-2 py-1 rounded text-secondary-foreground"
+                      className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between gap-4">
+                
+                <div className="flex justify-between gap-4 mt-6">
                   {project.github && (
-                    <Button variant="outline" size="sm" asChild className="flex-1 hover:bg-primary/10 hover:text-primary transition-colors">
+                    <Button variant="outline" size="sm" asChild className="flex-1 group">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-1 h-4 w-4" /> Code
+                        <Github className="mr-2 h-4 w-4 group-hover:animate-bounce-slow" /> Code
                       </a>
                     </Button>
                   )}
                   {project.demo && (
-                    <Button size="sm" asChild className="flex-1 hover:bg-primary/90 transition-colors">
+                    <Button size="sm" asChild className="flex-1 group">
                       <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        Live Demo
+                        Live Demo <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </a>
                     </Button>
                   )}
@@ -132,7 +166,14 @@ export default function Projects() {
         
         {visibleProjects < projects.length && (
           <div className="flex justify-center mt-10">
-            <Button onClick={loadMore} variant="outline" className="hover:bg-primary/10 hover:text-primary transition-colors">Load More Projects</Button>
+            <Button 
+              onClick={loadMore} 
+              variant="outline" 
+              className="group hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              Load More Projects
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         )}
       </div>

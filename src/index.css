@@ -31,6 +31,7 @@
     --primary-hue: 240;
     --primary-saturation: 5.9%;
     --accent-hue: 260;
+    --primary-rgb: 15, 23, 42;  /* RGB equivalent for primary color */
   }
 
   .dark {
@@ -53,6 +54,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+    --primary-rgb: 241, 245, 249;  /* RGB equivalent for dark mode primary */
   }
 
   /* Theme color variations */
@@ -60,30 +62,59 @@
     --primary-hue: 210;
     --primary-saturation: 70%;
     --accent-hue: 230;
+    --primary-rgb: 59, 130, 246;
   }
 
   .green {
     --primary-hue: 140;
     --primary-saturation: 60%;
     --accent-hue: 160;
+    --primary-rgb: 34, 197, 94;
   }
 
   .purple {
     --primary-hue: 270;
     --primary-saturation: 70%;
     --accent-hue: 290;
+    --primary-rgb: 147, 51, 234;
   }
 
   .minimal {
     --primary-hue: 200;
     --primary-saturation: 10%;
     --accent-hue: 200;
+    --primary-rgb: 203, 213, 225;
   }
 
   .elegant {
     --primary-hue: 340;
     --primary-saturation: 50%;
     --accent-hue: 20;
+    --primary-rgb: 244, 63, 94;
+  }
+
+  .high-contrast {
+    --primary: 60 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --primary-rgb: 234, 179, 8;
+  }
+
+  .cyberpunk {
+    --primary: 315 100% 60%;
+    --primary-foreground: 195 100% 95%;
+    --primary-rgb: 236, 72, 153;
+  }
+
+  .solarized {
+    --primary: 180 50% 35%;
+    --primary-foreground: 45 100% 95%;
+    --primary-rgb: 38, 139, 120;
+  }
+
+  .sepia {
+    --primary: 35 40% 40%;
+    --primary-foreground: 35 100% 95%;
+    --primary-rgb: 146, 104, 65;
   }
 }
 
@@ -94,6 +125,22 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Keyframes for background shapes */
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-15px) translateX(15px) rotate(5deg);
+    }
+    50% {
+      transform: translateY(-30px) translateX(0px) rotate(10deg);
+    }
+    75% {
+      transform: translateY(-15px) translateX(-15px) rotate(5deg);
+    }
   }
 }
 
@@ -132,7 +179,7 @@
   }
 
   .skill-icon-wrapper {
-    @apply flex items-center justify-center w-10 h-10 rounded-lg text-white;
+    @apply flex items-center justify-center w-12 h-12 rounded-lg text-white;
   }
 
   /* Animation classes */
@@ -159,6 +206,14 @@
   .project-card {
     animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 3s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
   }
 }
 
@@ -205,12 +260,31 @@
   }
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Particle animation */
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--primary-rgb), 0.1);
   pointer-events: none;
+  animation: float 15s infinite ease-in-out;
 }
 
 .particle-1 {
@@ -253,6 +327,11 @@
   animation: float 14s infinite ease-in-out;
 }
 
+/* Triangle shape for background elements */
+.triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
 /* Primary and accent color variables using CSS custom properties */
 :root {
   --primary: hsl(var(--primary-hue), var(--primary-saturation), 50%);
@@ -262,4 +341,31 @@
 .dark {
   --primary: hsl(var(--primary-hue), var(--primary-saturation), 60%);
   --accent: hsl(var(--accent-hue), 80%, 70%);
+}
+
+/* Project card hover effects */
+.project-card-overlay {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300 flex items-center justify-center bg-gradient-to-r from-primary/80 to-accent/80 group-hover:opacity-100 rounded-t-xl;
+}
+
+/* Skill card styles */
+.skill-card {
+  @apply bg-card rounded-xl overflow-hidden border border-border transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/30;
+  transform-style: preserve-3d;
+}
+
+.skill-card-overlay {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300 flex items-center justify-center group-hover:opacity-100;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
