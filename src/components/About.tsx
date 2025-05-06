@@ -58,36 +58,15 @@ export default function About() {
             className="reveal"
           >
             <div className="relative">
-              {/* Advanced 3D-styled image with theme adaptation */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl rounded-full animate-pulse-slow"></div>
-              <div className="relative z-10 rounded-2xl shadow-lg border-2 border-primary/10 overflow-hidden">
-                {/* 3D frame effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 backdrop-blur-sm"></div>
-                {/* Perspective container */}
-                <div className="relative transform transition-transform hover:scale-[1.02] duration-700 ease-in-out perspective-container">
-                  {/* Layer 1: Shadow/depth effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent z-10"></div>
-                  {/* Layer 2: Picture with 3D shine effect */}
-                  <div className="relative z-20">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent shine-effect"></div>
-                    <img 
-                      src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png" 
-                      alt="Lokesh Soni" 
-                      className="w-full max-w-md mx-auto rounded-2xl z-30 relative shadow-inner"
-                      style={{transform: "translateZ(20px)"}}
-                    />
-                  </div>
-                  {/* Layer 3: Front highlight */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent z-40 mix-blend-overlay"></div>
-                </div>
-              </div>
+              <img 
+                src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png" 
+                alt="Lokesh Soni" 
+                className="w-full max-w-md mx-auto rounded-2xl shadow-lg border-2 border-primary/10 relative z-10"
+              />
               <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg z-20 animate-bounce-slow">
                 CSE Student
               </div>
-              
-              {/* Theme-adaptive highlights */}
-              <div className="absolute -top-2 -left-2 w-12 h-12 bg-accent/20 rounded-full blur-md"></div>
-              <div className="absolute bottom-10 -right-4 w-8 h-8 bg-primary/30 rounded-full blur-sm"></div>
             </div>
           </div>
           
