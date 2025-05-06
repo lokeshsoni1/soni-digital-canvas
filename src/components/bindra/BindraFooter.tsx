@@ -1,5 +1,5 @@
 
-import { Heart, Github, Linkedin, Instagram } from "lucide-react";
+import { Heart, Linkedin, Instagram } from "lucide-react";
 
 export default function BindraFooter() {
   const currentYear = new Date().getFullYear();
@@ -22,15 +22,6 @@ export default function BindraFooter() {
           </div>
           
           <div className="flex items-center gap-4 mb-4 md:mb-0">
-            <a 
-              href="https://github.com/ipankajbindra" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-foreground/60 hover:text-primary transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="h-5 w-5" />
-            </a>
             <a 
               href="https://www.linkedin.com/in/pankaj-bindra-3057b1304/" 
               target="_blank" 

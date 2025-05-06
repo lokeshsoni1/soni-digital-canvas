@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -20,15 +20,6 @@ export default function Footer() {
               A passionate Computer Science student focused on creating accessible and user-friendly digital experiences.
             </p>
             <div className="flex space-x-3">
-              <a 
-                href="https://github.com/lokeshsoni1" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
               <a 
                 href="https://www.linkedin.com/in/lokesh-soni-2b3b7034a/" 
                 target="_blank"
