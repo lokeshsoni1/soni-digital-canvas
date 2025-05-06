@@ -45,13 +45,23 @@ export default function BindraAbout() {
             <div className="bg-secondary/10 backdrop-blur-sm border border-secondary/20 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center justify-center mb-6">
                 <div className="relative">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30">
+                  {/* 3D-styled image with theme adaptation */}
+                  <div className="absolute -inset-2 bg-gradient-to-r from-primary/30 to-accent/30 blur-md rounded-full"></div>
+                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30 relative z-10 transition-transform duration-700 hover:scale-105">
+                    {/* 3D effect layers */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent z-10"></div>
                     <img 
                       src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png"
                       alt="Pankaj Bindra"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover relative z-0"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent mix-blend-overlay z-20"></div>
+                    {/* Subtle inner shadow effect */}
+                    <div className="absolute inset-0 shadow-inner z-30"></div>
                   </div>
+                  {/* Theme-adaptive accent elements */}
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent/40 rounded-full"></div>
+                  <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-primary/40 rounded-full"></div>
                 </div>
               </div>
               
