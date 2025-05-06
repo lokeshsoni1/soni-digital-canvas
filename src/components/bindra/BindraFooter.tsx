@@ -1,5 +1,5 @@
 
-import { Heart, Linkedin, Instagram } from "lucide-react";
+import { Heart, Linkedin, Instagram, Github } from "lucide-react";
 
 export default function BindraFooter() {
   const currentYear = new Date().getFullYear();
@@ -39,6 +39,15 @@ export default function BindraFooter() {
               aria-label="Instagram"
             >
               <Instagram className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://github.com/lokeshhsoni" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-primary transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="h-5 w-5" />
             </a>
           </div>
           

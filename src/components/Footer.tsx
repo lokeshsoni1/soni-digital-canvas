@@ -1,5 +1,5 @@
 
-import { Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, Phone, Github } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -37,6 +37,15 @@ export default function Footer() {
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://github.com/lokeshhsoni" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
               </a>
             </div>
           </div>
