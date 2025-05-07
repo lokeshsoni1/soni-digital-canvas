@@ -149,7 +149,7 @@ export default function Contact() {
               <h3 className="text-xl font-bold mb-4 text-gradient">Connect With Me</h3>
               <div className="flex gap-3">
                 <a 
-                  href="https://github.com/lokeshsoni1" 
+                  href="https://github.com/lokeshhsoni" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-primary/10 p-3 rounded-full text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
