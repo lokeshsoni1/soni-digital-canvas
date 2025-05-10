@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -159,7 +160,7 @@ export default function Hero() {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-full blur-xl opacity-20 animate-spin-slow"></div>
               <img 
-                src="/lovable-uploads/52f6e410-c612-43ca-a932-fc59eb00325c.png" 
+                src="/lovable-uploads/21bea186-b0dd-45be-bad0-9ad9bd8695a1.png" 
                 alt="Lokesh Soni" 
                 className="w-64 h-64 object-cover rounded-full border-4 border-primary/20 shadow-xl relative z-10"
               />
