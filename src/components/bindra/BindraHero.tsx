@@ -115,7 +115,7 @@ export default function BindraHero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-full blur-2xl opacity-30"></div>
             <div className="relative w-64 h-64 rounded-full border-4 border-primary/20 shadow-xl overflow-hidden">
               <img 
-                src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png" 
+                src="/lovable-uploads/52f6e410-c612-43ca-a932-fc59eb00325c.png" 
                 alt="Pankaj Bindra" 
                 className="w-full h-full object-cover"
               />

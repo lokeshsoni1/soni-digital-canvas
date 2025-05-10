@@ -47,7 +47,7 @@ export default function BindraAbout() {
                 <div className="relative">
                   <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30">
                     <img 
-                      src="/lovable-uploads/3f064c13-752d-4896-ad16-0cc7b7ecbde0.png"
+                      src="/lovable-uploads/52f6e410-c612-43ca-a932-fc59eb00325c.png"
                       alt="Pankaj Bindra"
                       className="w-full h-full object-cover"
                     />
