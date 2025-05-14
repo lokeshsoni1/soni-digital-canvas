@@ -41,10 +41,18 @@ export default function BindraProjects() {
       tags: ["HTML", "CSS", "JavaScript", "Local Storage"],
       demo: "https://lokeshhsoni.github.io/milk_planner/",
       github: "https://github.com/lokeshhsoni/milk_planner"
+    },
+    {
+      id: 4,
+      title: "Lokesh Yantram",
+      description: "An interactive hand tracking application that scans users' hands using MediaPipe and TensorFlow.js. It detects finger movements to control a digital bulb, lighting it accordingly.",
+      image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=300&q=80",
+      tags: ["TensorFlow.js", "MediaPipe", "Hand Tracking", "AI"],
+      demo: "https://lokesh-hand-tracker.vercel.app/"
     }
   ];
   
-  const [visibleProjects, setVisibleProjects] = useState(3);
+  const [visibleProjects, setVisibleProjects] = useState(4);
 
   const loadMore = useCallback(() => {
     setVisibleProjects((prev) => prev + 3);
