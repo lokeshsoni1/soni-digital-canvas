@@ -60,7 +60,7 @@ export default function About() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl rounded-full animate-pulse-slow"></div>
               <img 
-                src="/lovable-uploads/52f6e410-c612-43ca-a932-fc59eb00325c.png" 
+                src="/lovable-uploads/37488469-dee4-40a6-b509-9ba432fbe7d0.png" 
                 alt="Lokesh Soni" 
                 className="w-full max-w-md mx-auto rounded-2xl shadow-lg border-2 border-primary/10 relative z-10"
               />
