@@ -22,72 +22,72 @@ export default function Skills() {
     { 
       name: "HTML", 
       icon: <FileCode className="h-5 w-5" />, 
-      level: 95, 
+      level: 80, 
       color: "from-orange-400 to-red-500",
-      description: "Expert proficiency in HTML5, semantic markup, and modern web standards."
+      description: "Strong foundation in HTML5 and semantic markup."
     },
     { 
       name: "CSS", 
       icon: <Palette className="h-5 w-5" />, 
-      level: 90, 
+      level: 50, 
       color: "from-blue-400 to-indigo-500",
-      description: "Advanced styling with CSS3, animations, and responsive design techniques."
+      description: "Basic styling with CSS3 and responsive design."
     },
     { 
       name: "JavaScript", 
       icon: <Code2 className="h-5 w-5" />, 
-      level: 85, 
+      level: 45, 
       color: "from-yellow-400 to-yellow-600",
-      description: "Strong JavaScript skills with knowledge of modern ES6+ features."
+      description: "Learning JavaScript fundamentals and ES6+ features."
     },
     { 
       name: "GitHub", 
       icon: <Github className="h-5 w-5" />, 
-      level: 70, 
+      level: 55, 
       color: "from-gray-700 to-gray-900",
-      description: "Proficient in version control, repository management, and collaboration using GitHub."
+      description: "Basic version control and repository management."
     },
     { 
       name: "Java", 
       icon: <Coffee className="h-5 w-5" />, 
-      level: 65, 
+      level: 75, 
       color: "from-orange-600 to-red-600",
-      description: "Skilled in building robust applications with Java, focusing on object-oriented programming."
+      description: "Learning Java basics and object-oriented programming."
     },
     { 
       name: "Swift", 
       icon: <Zap className="h-5 w-5" />, 
-      level: 75, 
+      level: 40, 
       color: "from-orange-500 to-red-500",
-      description: "Experienced in developing iOS applications with Swift, focusing on performance and UI design."
+      description: "Beginning iOS development with Swift."
     },
     { 
       name: "SQL", 
       icon: <Database className="h-5 w-5" />, 
-      level: 60, 
+      level: 45, 
       color: "from-blue-500 to-purple-500",
-      description: "Database design, queries, and relational data management."
+      description: "Basic database queries and design."
     },
     { 
       name: "Git", 
       icon: <GitBranch className="h-5 w-5" />, 
-      level: 80, 
+      level: 50, 
       color: "from-orange-600 to-red-600",
-      description: "Version control, branching strategies, and collaboration workflows."
+      description: "Learning version control basics."
     },
     { 
       name: "Figma", 
       icon: <Figma className="h-5 w-5" />, 
-      level: 85, 
+      level: 55, 
       color: "from-purple-500 to-pink-500",
-      description: "UI/UX design, prototyping, and design system implementation."
+      description: "Basic UI/UX design and prototyping."
     },
     { 
       name: "UI/UX Design", 
       icon: <PenTool className="h-5 w-5" />, 
-      level: 80, 
+      level: 50, 
       color: "from-pink-500 to-rose-500",
-      description: "User-centered design principles, wireframing, and interaction design."
+      description: "Learning design principles and user experience."
     },
   ];
 
