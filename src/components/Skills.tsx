@@ -76,11 +76,11 @@ export default function Skills() {
       description: "Learning version control basics."
     },
     { 
-      name: "Figma", 
-      icon: <Figma className="h-5 w-5" />, 
-      level: 55, 
-      color: "from-purple-500 to-pink-500",
-      description: "Basic UI/UX design and prototyping."
+      name: "Python", 
+      icon: <Code2 className="h-5 w-5" />, 
+      level: 80, 
+      color: "from-blue-500 to-green-500",
+      description: "Strong foundation in Python programming and scripting."
     },
     { 
       name: "UI/UX Design", 
