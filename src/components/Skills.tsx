@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { 
   Code2, Figma, FileCode, GitBranch, Database, 
-  Layers, Palette, Film, PenTool, Github 
+  Github, Palette, Film, PenTool, Coffee, Zap 
 } from "lucide-react";
 
 interface Skill {
@@ -41,25 +41,25 @@ export default function Skills() {
       description: "Strong JavaScript skills with knowledge of modern ES6+ features."
     },
     { 
-      name: "React", 
-      icon: <Layers className="h-5 w-5" />, 
+      name: "GitHub", 
+      icon: <Github className="h-5 w-5" />, 
       level: 70, 
-      color: "from-cyan-400 to-blue-500",
-      description: "Component-based architecture, state management, and React hooks."
+      color: "from-gray-700 to-gray-900",
+      description: "Proficient in version control, repository management, and collaboration using GitHub."
     },
     { 
-      name: "Next.js", 
-      icon: <Layers className="h-5 w-5" />, 
+      name: "Java", 
+      icon: <Coffee className="h-5 w-5" />, 
       level: 65, 
-      color: "from-gray-600 to-gray-900",
-      description: "Server-side rendering, static site generation, and API routes."
+      color: "from-orange-600 to-red-600",
+      description: "Skilled in building robust applications with Java, focusing on object-oriented programming."
     },
     { 
-      name: "Tailwind CSS", 
-      icon: <Palette className="h-5 w-5" />, 
+      name: "Swift", 
+      icon: <Zap className="h-5 w-5" />, 
       level: 75, 
-      color: "from-cyan-400 to-sky-500",
-      description: "Utility-first CSS framework for rapid UI development."
+      color: "from-orange-500 to-red-500",
+      description: "Experienced in developing iOS applications with Swift, focusing on performance and UI design."
     },
     { 
       name: "SQL", 
